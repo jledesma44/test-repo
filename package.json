@@ -1,0 +1,21 @@
+{
+  "name": "gulp-simple-starter",
+  "version": "1.0.0",
+  "description": "gulp starter for simple html and css projects",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jaime Ledesma",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.27.7",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.44.0"
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^3.0.0"
+  }
+}
