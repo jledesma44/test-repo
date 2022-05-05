@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
+const kit = require('gulp-kit-2');
 
 // Sass Task
 
@@ -14,6 +15,15 @@ gulp.task('sass', function (done) {
     .pipe(gulp.dest('./dist/css/'));
 });
 
+// Html kit templating
+gulp.task('kit', function(done){
+  return(
+    gulp.src('./html/**/*.kit')
+      .pipe(kit())
+      .pipe(gulp.dest('./'))
+  )
+})
+
 // Watch task with BrowserSync
 
 gulp.task('watch', function () {
@@ -21,9 +31,19 @@ gulp.task('watch', function () {
     server: {
       baseDir: './',
     },
-    browser: "firefox developer edition",
+    // uncomment below line to use with code-server
+    open: false
+
+    // uncomment below line to use for vscode on local machine  
+    // browser: "firefox developer edition",
   });
   gulp
-    .watch(['./src/sass/**/*.scss', '**/*.html'], gulp.series(['sass']))
+    .watch(
+      [
+        './src/sass/**/*.scss', 
+        './html/**/*.kit'
+      ],
+      gulp.series(['sass', 'kit'])
+    )
     .on('change', browserSync.reload);
 });
